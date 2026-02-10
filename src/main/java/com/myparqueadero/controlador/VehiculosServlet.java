@@ -49,7 +49,8 @@ public class VehiculosServlet extends HttpServlet {
             int idVehiculo = Integer.parseInt(request.getParameter("idVehiculo"));
             vehiculo.setidVehiculo(idVehiculo);
             exito = dao.actualizar(vehiculo);
-
+            
+            response.
         }
         
         request.setAttribute("exito", exito);
