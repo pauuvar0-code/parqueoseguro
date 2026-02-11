@@ -93,7 +93,7 @@ public class VehiculosDAO {
     
     public boolean actualizar(Vehiculos v) {
         
-        String sql = "UPDATE vehiculos SET marca=?, modelo=?, color=?, anio=?, documentoPorpietario=?, idCategoria=? WHERE idVehiculo=?";
+        String sql = "UPDATE vehiculos SET marca=?, modelo=?, color=?, anio=?, documentoPropietario=?, idCategoria=? WHERE idVehiculo=?";
         
         try (Connection cn = Conexion.conectar();
              PreparedStatement ps = cn.prepareStatement(sql)) {
@@ -108,8 +108,8 @@ public class VehiculosDAO {
             
             return ps.executeUpdate() > 0;
             
-        }catch (Exception e) {
-            System.out.println("Error actualizar: " + e.getMessage());
+        } catch(Exception e) {
+            System.out.println("Error actualizar vehiculo: " + e.getMessage());
             return false;
         }
     }

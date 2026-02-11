@@ -50,7 +50,8 @@ public class VehiculosServlet extends HttpServlet {
             vehiculo.setidVehiculo(idVehiculo);
             exito = dao.actualizar(vehiculo);
             
-            response.
+            response.sendRedirect(request.getContextPath() + "/VehiculosServlet");
+            return;
         }
         
         request.setAttribute("exito", exito);
