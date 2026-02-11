@@ -113,5 +113,21 @@ public class VehiculosDAO {
             return false;
         }
     }
+    
+    public boolean eliminar(int idVehiculo) {
+        String sql = "DELETE FROM vehiculos WHERE idVehiculo = ?";
+        
+        try (Connection cn = Conexion.conectar();
+             PreparedStatement ps = cn.prepareStatement(sql)) {
+            
+            ps.setInt(1, idVehiculo);
+            
+            return ps.executeUpdate() > 0;
+            
+        } catch(Exception e) {
+            System.out.println("Error al eliminar vehiculo: " + e.getMessage());
+            return false;
+        }
+    }
 }
 

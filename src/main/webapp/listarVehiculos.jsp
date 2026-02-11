@@ -30,6 +30,7 @@
             <th>Propietario</th>
             <th>Categoria</th>
             <th>Editar</th>
+            <th>Acciones</th>
         </tr>
         
     <%
@@ -48,6 +49,13 @@
             <td>
                 <a href="<%= request.getContextPath() %>/VehiculosServlet?accion=editar&idVehiculo=<%= v.getidVehiculo() %>">
                     Editar
+                </a>
+                    
+                |
+                
+                <a href="<%= request.getContextPath() %>/VehiculosServlet?accion=eliminar&idVehiculo=<%= v.getidVehiculo() %>"
+                  onclick="return confirm('¿Está segura que desea eliminar este vehículo?');">
+                   Eliminar
                 </a>
             </td>
         </tr>

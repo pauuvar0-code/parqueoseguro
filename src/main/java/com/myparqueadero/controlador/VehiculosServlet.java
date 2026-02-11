@@ -77,7 +77,13 @@ public class VehiculosServlet extends HttpServlet {
             
             request.setAttribute("vehiculo", vehiculo);
             request.getRequestDispatcher("Vehiculos.jsp").forward(request, response);
-        } else {
+        } else if("eliminar".equals(accion)) {
+            
+            int idVehiculo = Integer.parseInt(request.getParameter("idVehiculo"));
+            dao.eliminar(idVehiculo);
+            
+            response.sendRedirect(request.getContextPath() + "/VehiculosServlet");
+        }else {
             List<Vehiculos> lista = dao.listar();
             
             System.out.println("Cantidad de vehiculos: " + lista.size());
