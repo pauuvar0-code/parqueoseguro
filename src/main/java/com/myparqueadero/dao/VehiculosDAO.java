@@ -33,7 +33,9 @@ public class VehiculosDAO {
     }
     public List<Vehiculos> listar() {
         List<Vehiculos> lista = new ArrayList<>();
-        String sql = "SELECT * FROM vehiculos";
+        String sql = "SELECT v.*, c.nombreCategoria " +
+                     "FROM vehiculos v " +
+                     "INNER JOIN categoriasVehiculos c ON v.idCategoria = c.idCategoria";
         
         try (Connection cn = Conexion.conectar();
              PreparedStatement ps = cn.prepareStatement(sql);
@@ -49,6 +51,7 @@ public class VehiculosDAO {
                v.setdocumentoPropietario(rs.getString("documentoPropietario"));
                v.setidCategoria(rs.getInt("idCategoria"));
                v.setidVehiculo(rs.getInt("idVehiculo"));
+               v.setnombreCategoria(rs.getString("nombreCategoria"));
                
                lista.add(v);
            }

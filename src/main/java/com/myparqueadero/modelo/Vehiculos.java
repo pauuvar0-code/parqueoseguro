@@ -12,6 +12,8 @@ public class Vehiculos {
     private String documentoPropietario;
     private int idCategoria;
     private Timestamp fechaIngreso;
+    private String nombreCategoria;
+    
     
     public Vehiculos(){
         
@@ -49,5 +51,6 @@ public class Vehiculos {
     public void setidCategoria(int idCategoria) {this.idCategoria = idCategoria;}
     public Timestamp getfechaIngreso() {return fechaIngreso;}
     public void setfechaIngreso(Timestamp fechaIngreso) {this.fechaIngreso = fechaIngreso;}
-
+    public String getnombreCategoria() {return nombreCategoria;}
+    public void setnombreCategoria(String nombreCategoria) {this.nombreCategoria = nombreCategoria;}
 }
