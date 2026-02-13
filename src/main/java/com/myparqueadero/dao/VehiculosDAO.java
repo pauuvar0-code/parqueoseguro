@@ -133,5 +133,44 @@ public class VehiculosDAO {
             return false;
         }
     }
+    
+    public List<Vehiculos> buscarPorPlaca(String placa) {
+        
+        List<Vehiculos> lista = new ArrayList<>();
+        
+        String sql = "SELECT v.idVehiculo, v.placa, v.marca, v.modelo, v.color, v.anio, " +
+                     "v.documentoPropietario, v.idCategoria, c.nombreCategoria "+
+                     "FROM vehiculos v " +
+                     "INNER JOIN categoriasVehiculo c ON v.idCategoria = c.idCategoria " +
+                     "WHERE v.placa LIKE ?";
+        
+        try (Connection cn = Conexion.conectar();
+             PreparedStatement ps = cn.prepareStatement(sql)) {
+            
+            ps.setString(1, "%" + placa + "%");
+            
+            ResultSet rs = ps.executeQuery();
+            
+            while (rs.next()) {
+                Vehiculos v = new Vehiculos();
+                v.setidVehiculo(rs.getInt("idVehiculo"));
+                v.setplaca(rs.getString("placa"));
+                v.setmarca(rs.getString("marca"));
+                v.setmodelo(rs.getString("modelo"));
+                v.setcolor(rs.getString("color"));
+                v.setanio(rs.getInt("anio"));
+                v.setdocumentoPropietario(rs.getString("documentoPropietario"));
+                v.setidCategoria(rs.getInt("idCategoria"));
+                v.setnombreCategoria(rs.getString("nombreCategoria"));
+                
+                lista.add(v);
+            }
+            
+        }catch (Exception e) {
+            System.out.println("Error buscar placa: " + e.getMessage());
+        }
+        
+        return lista;
+    }
 }
 

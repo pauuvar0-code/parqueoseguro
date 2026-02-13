@@ -83,6 +83,14 @@ public class VehiculosServlet extends HttpServlet {
             dao.eliminar(idVehiculo);
             
             response.sendRedirect(request.getContextPath() + "/VehiculosServlet");
+        }else if("buscar".equals(accion)){
+            
+            String placa = request.getParameter("placa");
+            
+            List<Vehiculos> lista = dao.buscarPorPlaca(placa);
+            
+            request.setAttribute("listaVehiculos", lista);
+            request.getRequestDispatcher("/listarVehiculos.jsp").forward(request, response);
         }else {
             List<Vehiculos> lista = dao.listar();
             

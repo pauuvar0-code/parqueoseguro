@@ -18,8 +18,14 @@
     
     <p><strong>Total registros:</strong> <%= (lista != null ? lista.size() : 0) %></p>
     
-
-
+    <form action="<%= request.getContextPath() %>/VehiculosServlet" method="get">
+        
+        <input type="hidden" name="accion" value="buscar">
+        <input type="text" name="placa" placeholder="Buscar por placa">
+        <button type="submit">Buscar</button>
+        <a href="<%= request.getContextPath() %>/VehiculosServlet">
+    </form>
+    
     <table border="1">
         <tr>
             <th>Placa</th>
