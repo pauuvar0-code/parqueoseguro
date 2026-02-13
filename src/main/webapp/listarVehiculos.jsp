@@ -45,7 +45,6 @@
             <td><%= v.getcolor() %></td>
             <td><%= v.getanio() %></td>
             <td><%= v.getdocumentoPropietario() %></td>
-            <td><%= v.getidCategoria() %></td>
             <td><%= v.getnombreCategoria() %></td>
             <td>
                 <a href="<%= request.getContextPath() %>/VehiculosServlet?accion=editar&idVehiculo=<%= v.getidVehiculo() %>">

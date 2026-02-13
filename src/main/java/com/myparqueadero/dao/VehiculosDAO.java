@@ -33,9 +33,10 @@ public class VehiculosDAO {
     }
     public List<Vehiculos> listar() {
         List<Vehiculos> lista = new ArrayList<>();
-        String sql = "SELECT v.*, c.nombreCategoria " +
+        String sql = "SELECT v.placa, v.marca, v. modelo, v.color, v.anio," +
+                     " v.documentoPropietario, v.idCategoria, v.idVehiculo, c.nombreCategoria " +
                      "FROM vehiculos v " +
-                     "INNER JOIN categoriasVehiculos c ON v.idCategoria = c.idCategoria";
+                     "INNER JOIN categoriasVehiculo c ON v.idCategoria = c.idCategoria";
         
         try (Connection cn = Conexion.conectar();
              PreparedStatement ps = cn.prepareStatement(sql);
