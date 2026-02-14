@@ -7,7 +7,13 @@
 <body>
     <h2>Sistema de Parqueadero</h2>
     
-    <a href="Vehiculos.jsp">Gestion de Vehiculos</a>
-    <a href="VehiculosServlet">Listar Vehiculos</a>
+    <a href="<%= request.getContextPath() %>/Vehiculos.jsp">
+        Gestion de vehiculos
+    </a>
+    <br><br>
+    
+    <a href="<%= request.getContextPath() %>/VehiculosServlet">
+        Lista de vehiculos
+    </a>
 </body>
 </html>

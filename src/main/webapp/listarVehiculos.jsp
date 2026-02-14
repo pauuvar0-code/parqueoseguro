@@ -7,10 +7,29 @@
 <head>
     <meta charset="UTF-8">
     <title>Lista de Vehiculos</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
     
     <h2>Vehiculos Registrados</h2>
+    
+    <%
+        String mensaje = (String) request.getParameter("mensaje");
+        
+        if("guardado".equals(mensaje)) {
+    %>        
+        <p style="color: green;"><strong>Vehiculo registrado exitosamente</strong></p>
+    <%    
+        } else if("actualizado".equals(mensaje)) {
+    %>
+        <p style="color: blue;"><strong>Vehiculo actualizado correctamente</strong></p>
+    <%
+        } else if("eliminado".equals(mensaje)) {
+    %>
+        <p style="color: red;"><strong>Vehiculo eliminado correctamente</strong></p>
+    <%
+        }
+    %>
     
     <%
         List<Vehiculos> lista = (List<Vehiculos>) request.getAttribute("listaVehiculos");
@@ -74,6 +93,6 @@
     <br>
     <a href="Vehiculos.jsp">Registro nuevo vehiculo</a>
     
-    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

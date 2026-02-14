@@ -45,19 +45,18 @@ public class VehiculosServlet extends HttpServlet {
         if ("registrar".equals(accion)) {
             exito = dao.insertar(vehiculo);
             
+            response.sendRedirect(request.getContextPath() +
+                    "/VehiculosServlet?mensaje=guardado");
+            return;
+            
         } else if ("actualizar".equals(accion)) {
             int idVehiculo = Integer.parseInt(request.getParameter("idVehiculo"));
             vehiculo.setidVehiculo(idVehiculo);
             exito = dao.actualizar(vehiculo);
             
-            response.sendRedirect(request.getContextPath() + "/VehiculosServlet");
+            response.sendRedirect(request.getContextPath() + "/VehiculosServlet?mensaje=actualizado");
             return;
         }
-        
-        request.setAttribute("exito", exito);
-        request.setAttribute("vehiculo", vehiculo);
-        
-        response.sendRedirect(request.getContextPath() + "/VehiculosServlet");
 
     }
 
@@ -82,7 +81,7 @@ public class VehiculosServlet extends HttpServlet {
             int idVehiculo = Integer.parseInt(request.getParameter("idVehiculo"));
             dao.eliminar(idVehiculo);
             
-            response.sendRedirect(request.getContextPath() + "/VehiculosServlet");
+            response.sendRedirect(request.getContextPath() + "/VehiculosServlet?mensaje=eliminado");
         }else if("buscar".equals(accion)){
             
             String placa = request.getParameter("placa");
@@ -95,6 +94,9 @@ public class VehiculosServlet extends HttpServlet {
             List<Vehiculos> lista = dao.listar();
             
             System.out.println("Cantidad de vehiculos: " + lista.size());
+            
+            String mensaje = request.getParameter("mensaje");
+            request.setAttribute("mensaje", mensaje);
             
             request.setAttribute("listaVehiculos", lista);
             request.getRequestDispatcher("/listarVehiculos.jsp")
